@@ -36,7 +36,10 @@ swddude[libs]		:= error:error
 swddude[libs]		+= log:log
 swddude[libs]		+= files:files
 swddude[libs]		+= command_line:command_line
-swddude[libs]		+= system/ftdi:ftdi
+swddude[libs]		+= system/ftdi:ftdi 
+swddude[libs]       += system/usb:usb
+swddude[cpp_flags]    += -I/usr/include/libusb-1.0  -I/usr/local/include/libftdi1
+swddude[l_flags]    += -L/usr/local/lib -lftdi1 -lusb-1.0 
 
 swddump[type]		:= program
 swddump[cpp_files]	:= swd_dp.cpp swd_mpsse.cpp target.cpp swddump.cpp
@@ -45,6 +48,8 @@ swddump[libs]		:= error:error
 swddump[libs]		+= log:log
 swddump[libs]		+= command_line:command_line
 swddump[libs]		+= system/ftdi:ftdi
+swddump[cpp_flags]    += -I/usr/include/libusb-1.0  -I/usr/local/include/libftdi1
+swddump[l_flags]    += -L/usr/local/lib -lftdi1 -lusb-1.0 
 
 swdprobe[type]		:= program
 swdprobe[cpp_files]	:= swd_dp.cpp swd_mpsse.cpp target.cpp swdprobe.cpp
@@ -54,6 +59,8 @@ swdprobe[libs]		+= log:log
 swdprobe[libs]		+= files:files
 swdprobe[libs]		+= command_line:command_line
 swdprobe[libs]		+= system/ftdi:ftdi
+swdprobe[cpp_flags]    += -I/usr/include/libusb-1.0  -I/usr/local/include/libftdi1
+swdprobe[l_flags]    += -L/usr/local/lib -lftdi1 -lusb-1.0 
 
 swdhost[type]		:= program
 swdhost[cpp_files]	:= swd_dp.cpp swd_mpsse.cpp target.cpp swdhost.cpp
@@ -63,5 +70,7 @@ swdhost[libs]		+= log:log
 swdhost[libs]		+= files:files
 swdhost[libs]		+= command_line:command_line
 swdhost[libs]		+= system/ftdi:ftdi
+swdhost[cpp_flags]    += -I/usr/include/libusb-1.0  -I/usr/local/include/libftdi1
+swdhost[l_flags]    += -L/usr/local/lib -lftdi1 -lusb-1.0 
 
 include $(depth)/build/Makefile.rules
