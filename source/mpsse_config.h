@@ -36,7 +36,7 @@
 struct MPSSEPinConfig
 {
     uint8_t     low_state;
-    uint8_t     low_direction;
+    uint8_t     low_direction;  // 1 bit means output
     uint8_t     high_state;
     uint8_t     high_direction;
 };

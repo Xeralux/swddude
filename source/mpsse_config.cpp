@@ -31,14 +31,33 @@
 
 using namespace Err;
 
+/*
+  connect ADBUS2 & ADBUS1 to SWDIO
+  connect ADBUS0 to SWCLK
+  connect ADBUS3 to RESET 
+*/
+#if 1
 MPSSEConfig const       um232h_config =
 {
     0x0403, 0x6014, 0,
-    {0x09, 0x09, 0x00, 0x00}, //idle read
-    {0x09, 0x0b, 0x00, 0x00}, //idle write
+    {0x01, 0x01, 0x00, 0x00}, //idle read, ADBUS0 & 3 output, ADBUS0 is clock
+    {0x01, 0x03, 0x00, 0x00}, //idle write, ADBUS0,ADBUS1,ADBUS3 output, ADBUS1 is data out
+    {0x01, 0x0b, 0x00, 0x00}, //reset target
+    {0x03, 0x03, 0x00, 0x00}, //reset swd
+};
+#else
+
+// This was the original config - non Xeralux board
+
+MPSSEConfig const       um232h_config =
+{
+    0x0403, 0x6014, 0,
+    {0x09, 0x09, 0x00, 0x00}, //idle read, ADBUS0 & 3 output, ADBUS0 is clock
+    {0x09, 0x0b, 0x00, 0x00}, //idle write, ADBUS0,ADBUS1,ADBUS3 output, ADBUS1 is data out
     {0x01, 0x0b, 0x00, 0x00}, //reset target
     {0x0b, 0x0b, 0x00, 0x00}, //reset swd
 };
+#endif
 
 MPSSEConfig const       bus_blaster_config =
 {
