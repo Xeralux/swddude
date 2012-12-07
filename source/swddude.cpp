@@ -282,7 +282,7 @@ static Error program_flash(Target & target,
     rptr<word_t> const work_area(ram_buffer + words_per_block);
 
     size_t const last_sector =
-        (word_count + words_per_sector - 1) / words_per_sector;
+        (word_count + words_per_sector - 1) / words_per_sector - 1;
     size_t const block_count =
         (word_count + words_per_block - 1) / words_per_block;
 
